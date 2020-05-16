@@ -1,0 +1,9 @@
+<div class="header-bar">
+  <div class="logo-container">
+    <div class="logo"><a routerLink="/">Cards On The Web</a></div>
+  </div>
+  <div class="info-container">
+    <div class="info-box" *ngIf="userName"><b>User:</b> {{ userName }}</div>
+    <div class="info-box" *ngIf="lobbyId"><b>Lobby:</b> {{ lobbyId }}</div>
+  </div>
+</div>

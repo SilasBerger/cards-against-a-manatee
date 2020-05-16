@@ -1,0 +1,89 @@
+$padding-top: 30px;
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 99vw;
+}
+
+.left {
+  // background-color: red;
+  padding: $padding-top 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.right {
+  // background-color: magenta;
+  padding-top: $padding-top;
+  flex: 1;
+}
+
+.leader-buttons {
+  // margin-top: $padding-top;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $padding-top;
+}
+
+.black-card-container {
+
+}
+
+.card-list {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  height: 300px;
+}
+
+.placed-white-cards {
+
+}
+
+.personal-white-cards {
+
+}
+
+.card {
+  width: 250px;
+  height: 250px;
+  padding: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.black-card {
+  background-color: black;
+  color: white;
+}
+
+.white-card {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.personal-white-cards .white-card:hover {
+  background-color: #f1f1f1;
+}
+
+button {
+  background-color: black;
+  color: white;
+  padding: 20px 30px;
+  border-color: black;
+  border-radius: 200px;
+  border-style: solid;
+  font-size: 18pt;
+  font-weight: bold;
+  margin: 0 10px;
+  cursor: pointer;
+}

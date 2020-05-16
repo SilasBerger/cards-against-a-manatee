@@ -1,0 +1,43 @@
+div {
+  color: white;
+}
+
+.header-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex-wrap: wrap;
+  height: 7vh;
+  width: 100%;
+  background-color: black;
+  padding: 0 20px;
+}
+
+.logo {
+
+}
+
+.logo > a,
+.logo > a:visited {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.info-container > .info-box {
+  margin-left: 20px;
+}
