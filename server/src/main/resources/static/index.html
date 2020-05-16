@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Page</title>
+</head>
+<body>
+    <h1>Demo page</h1>
+    <p>This page will get removed later.</p>
+
+    <label for="input-user-name">User Name:</label>
+    <input type="text" id="input-user-name" placeholder="Enter a user name...">
+    <br>
+    <label for="input-user-id">User ID:</label>
+    <input type="text" id="input-user-id" placeholder="User UUID...">
+    <br>
+    <label for="input-lobby-id">Lobby ID:</label>
+    <input type="text" id="input-lobby-id" placeholder="Lobby ID...">
+    <br>
+    <button id="btn-create-user">Create User</button>
+    <button id="btn-create-lobby">Create Lobby</button>
+    <button id="btn-connect">Connect</button>
+    <button id="btn-join-lobby">Join Lobby</button>
+    <button id="btn-exit-lobby">Exit Lobby</button>
+
+    <script>
+        function createUser() {
+            fetch("http://localhost:8080/player",
+                {
+                    method: "POST",
+                    body: "" + document.getElementById("input-user-name").value
+                })
+                .then(res => res.json())
+                .then(resJson => document.getElementById("input-user-id").value = resJson.id);
+        }
+
+        function createLobby() {
+            fetch("http://localhost:8080/lobby/create",
+                {
+                    method: "POST"
+                })
+                .then(res => res.json())
+                .then(resJson => document.getElementById("input-lobby-id").value = resJson.id);
+        }
+
+        function onMessage(msg) {
+            console.log(JSON.parse(msg.data));
+        }
+
+        function onClose() {
+            console.log("WebSocket disconnected.");
+        }
+
+        let ws = null;
+
+        function send(request) {
+            ws.send(JSON.stringify(request));
+        }
+
+        function playerConnect() {
+            const playerId = document.getElementById("input-user-id").value;
+
+            console.log("Trying to open WebSocket.");
+            ws = new WebSocket(`ws://localhost:8080/player/connect/${playerId}`);
+            ws.onopen = () => {
+                console.log(`WebSocket open`);
+            };
+            ws.onmessage = onMessage;
+            ws.onclose = onClose;
+        }
+
+        function joinLobby() {
+            const lobbyId = document.getElementById("input-lobby-id").value;
+            const request = {
+                headers: {
+                    eventName: "request.request_join_lobby",
+                    iat: Date.now(),
+                },
+                data: {
+                    lobbyId: lobbyId
+                }
+            }
+            send(request);
+        }
+
+        function exitLobby() {
+            const request = {
+                headers: {
+                    eventName: "request.request_exit_lobby",
+                    iat: Date.now()
+                },
+                data: {}
+            }
+            send(request);
+        }
+
+        document.getElementById("btn-create-user").addEventListener("click", () => createUser());
+        document.getElementById("btn-create-lobby").addEventListener("click", () => createLobby());
+        document.getElementById("btn-connect").addEventListener("click", () => playerConnect());
+        document.getElementById("btn-join-lobby").addEventListener("click", () => joinLobby());
+        document.getElementById("btn-exit-lobby").addEventListener("click", () => exitLobby());
+    </script>
+</body>
+</html>
