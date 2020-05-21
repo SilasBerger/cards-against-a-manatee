@@ -5,7 +5,7 @@
       <button class="btn btn-primary" *ngIf="gameActive && !roundActive" (click)="requestStartRound()">Start Game</button>
       <button class="btn btn-primary" *ngIf="gameActive && roundActive && !turnActive" (click)="requestStartTurn()">Next Turn</button>
     </div>
-    <app-lobby-members-list [members]="members"></app-lobby-members-list>
+    <app-lobby-members-list [members]="members" [leaderId]="leaderId"></app-lobby-members-list>
   </div>
   <div class="right">
     <div *ngIf="!gameActive">

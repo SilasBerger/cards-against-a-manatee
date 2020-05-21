@@ -162,4 +162,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
     });
   }
 
+  get leaderId(): string {
+    return this.lobby.leaderId;
+  }
 }

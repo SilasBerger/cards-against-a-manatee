@@ -1,5 +1,7 @@
+$card-color: #F03BF1;
+
 .member-card {
-  background-color: #F03BF1;
+  background-color: $card-color;
   width: 250px;
   height: 70px;
   display: flex;
@@ -9,7 +11,14 @@
   padding: 0 30px;
   margin-bottom: 30px;
   font-weight: bold;
+  border-width: 3px;
+  border-color: $card-color;
+  border-style: solid;
   border-radius: 200px;
+}
+
+.member-card-leader {
+  border-color: white;
 }
 
 .member-card-content {
