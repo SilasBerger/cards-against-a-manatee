@@ -125,6 +125,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
     this._websocketConnectionService.send('move.move_play_white_card', {
       cardId: card.id
     });
+    this.turnActive = false;
   }
 
   requestNewGame() {

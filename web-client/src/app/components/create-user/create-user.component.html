@@ -1,5 +1,11 @@
-<div class="container">
-  <h1>Create User</h1>
-  <input [(ngModel)]="userName" type="text" spellcheck="false" maxlength="15" placeholder="Some stupid username...">
-  <button (click)="onSubmit()">Create</button>
+<div class="comp-container">
+  <h1 class="headline">Create User</h1>
+  <input
+    class="big-input"
+    [(ngModel)]="userName"
+    type="text"
+    spellcheck="false"
+    maxlength="15"
+    placeholder="Some stupid username...">
+  <button (click)="onSubmit()" class="btn btn-primary">Create</button>
 </div>

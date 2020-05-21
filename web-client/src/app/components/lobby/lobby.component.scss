@@ -60,19 +60,23 @@ $padding-top: 30px;
   margin-bottom: 20px;
 }
 
-.black-card {
+.card-black {
   background-color: black;
   color: white;
 }
 
-.white-card {
+.card-white {
   background-color: white;
   color: black;
-  cursor: pointer;
+
 }
 
-.personal-white-cards .white-card:hover {
-  background-color: #f1f1f1;
+.card-white-playable {
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
 }
 
 button {

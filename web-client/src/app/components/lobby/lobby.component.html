@@ -1,9 +1,9 @@
 <div class="container">
   <div class="left">
     <div *ngIf="isLeader && !turnActive" class="leader-buttons">
-      <button *ngIf="!gameActive" (click)="requestNewGame()">New Game</button>
-      <button *ngIf="gameActive && !roundActive" (click)="requestStartRound()">Start Game</button>
-      <button *ngIf="gameActive && roundActive && !turnActive" (click)="requestStartTurn()">Next Turn</button>
+      <button class="btn btn-primary" *ngIf="!gameActive" (click)="requestNewGame()">New Game</button>
+      <button class="btn btn-primary" *ngIf="gameActive && !roundActive" (click)="requestStartRound()">Start Game</button>
+      <button class="btn btn-primary" *ngIf="gameActive && roundActive && !turnActive" (click)="requestStartTurn()">Next Turn</button>
     </div>
     <app-lobby-members-list [members]="members"></app-lobby-members-list>
   </div>
@@ -13,7 +13,7 @@
       <h1 *ngIf="!isLeader">Waiting for the lobby leader to start the game...</h1>
     </div>
     <div class="black-card-container" *ngIf="gameActive">
-      <div *ngIf="currentBlackCard" class="card black-card">
+      <div *ngIf="currentBlackCard" class="card card-black">
         {{ currentBlackCard.text }}
       </div>
     </div>
@@ -23,7 +23,7 @@
         <div *ngIf="placedWhiteCards.length === 0">
           (Click on a white card to place it, or wait for another user to place one)
         </div>
-        <div *ngFor="let whiteCard of placedWhiteCards" class="card white-card">
+        <div *ngFor="let whiteCard of placedWhiteCards" class="card card-white">
           {{ whiteCard.text }}
         </div>
       </div>
@@ -31,7 +31,10 @@
     <div class="personal-white-cards" *ngIf="gameActive">
       <h2>Personal White Cards</h2>
       <div class="card-list">
-        <div *ngFor="let whiteCard of personalWhiteCards" (click)="playWhiteCard(whiteCard)" class="card white-card">
+        <div *ngFor="let whiteCard of personalWhiteCards"
+             (click)="playWhiteCard(whiteCard)"
+             class="card card-white"
+             [class.card-white-playable]="turnActive">
           {{ whiteCard.text }}
         </div>
       </div>
