@@ -24,6 +24,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   placedWhiteCards: WhiteCard[] = [];
   currentBlackCard: BlackCard = null;
   gameActive = false;
+  gameOver = false;
   roundActive = false;
   turnActive = false;
   canPlay = false;
@@ -66,6 +67,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
     switch (event.headers.eventName) {
       case 'notification.notify_game_started': {
         this.gameActive = true;
+        this.gameOver = false;
         this.currentBlackCard = null;
         this.placedWhiteCards = [];
         this.personalWhiteCards = [];
@@ -107,6 +109,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
       }
 
       case 'gameupdate.game_update_game_over': {
+        this.gameOver = true;
         this.roundActive = false;
         this.turnActive = false;
         this.canPlay = false;
@@ -146,6 +149,11 @@ export class LobbyComponent implements OnInit, OnDestroy {
   requestStartTurn() {
     console.log('Requesting next turn.');
     this._websocketConnectionService.send('gamerequest.game_request_next_turn', {});
+  }
+
+  endGame() {
+    this.gameActive = false;
+    this.gameOver = false;
   }
 
   get isLeader() {

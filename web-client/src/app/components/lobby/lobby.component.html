@@ -2,15 +2,16 @@
   <div class="left">
     <div *ngIf="isLeader && !turnActive" class="leader-buttons">
       <button class="btn btn-primary" *ngIf="!gameActive" (click)="requestNewGame()">New Game</button>
-      <button class="btn btn-primary" *ngIf="gameActive && !roundActive" (click)="requestStartRound()">Start Game</button>
+      <button class="btn btn-primary" *ngIf="gameActive && !gameOver && !roundActive" (click)="requestStartRound()">Start Game</button>
       <button class="btn btn-primary" *ngIf="gameActive && roundActive && !turnActive" (click)="requestStartTurn()">Next Turn</button>
+      <button class="btn btn-primary" *ngIf="gameActive && gameOver" (click)="endGame()">End Game</button>
     </div>
     <app-lobby-members-list [members]="members" [leaderId]="leaderId"></app-lobby-members-list>
   </div>
   <div class="right">
     <div *ngIf="!gameActive">
       <h1 *ngIf="isLeader">Click "Start Game" to start the game.</h1>
-      <h1 *ngIf="!isLeader">Waiting for the lobby leader to start the game...</h1>
+      <h1 *ngIf="!isLeader">Waiting for the next game to start...</h1>
     </div>
     <div class="black-card-container" *ngIf="gameActive">
       <div *ngIf="currentBlackCard" class="card card-black">
