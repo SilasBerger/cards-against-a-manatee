@@ -1,3 +1,6 @@
+/* ======= Vars ====== */
+$btn-hover-bg-color: #1d1d1d;
+
 * {
   box-sizing: border-box;
 }
@@ -64,7 +67,8 @@ input[type=text].big-input:focus {
   background-color: black;
 
   &:hover {
-    background-color: #141414;
+    background-color: $btn-hover-bg-color;
+    border-color: $btn-hover-bg-color;
   }
 }
 
@@ -73,6 +77,10 @@ input[type=text].big-input:focus {
   background-color: rgba(0, 0, 0, 0);
 
   &:hover {
-    background-color: purple;
+    &:hover {
+      background-color: $btn-hover-bg-color;
+      border-color: $btn-hover-bg-color;
+      color: white;
+    }
   }
 }
