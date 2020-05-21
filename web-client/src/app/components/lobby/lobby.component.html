@@ -34,7 +34,7 @@
         <div *ngFor="let whiteCard of personalWhiteCards"
              (click)="playWhiteCard(whiteCard)"
              class="card card-white"
-             [class.card-white-playable]="turnActive">
+             [class.card-white-playable]="canPlay">
           {{ whiteCard.text }}
         </div>
       </div>

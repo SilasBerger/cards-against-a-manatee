@@ -26,6 +26,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   gameActive = false;
   roundActive = false;
   turnActive = false;
+  canPlay = false;
 
   constructor(private _lobbyService: LobbyService,
               private _userService: UserService,
@@ -84,6 +85,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
       case 'gameupdate.game_update_new_black_card': {
         this.turnActive = true;
+        this.canPlay = true;
         this.placedWhiteCards = [];
         const cardData = event.data.card;
         this.currentBlackCard = new BlackCard(cardData.id, cardData.text, cardData.pick, null);
@@ -100,30 +102,32 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
       case 'gameupdate.game_update_turn_over': {
         this.turnActive = false;
+        this.canPlay = false;
         break;
       }
 
       case 'gameupdate.game_update_game_over': {
         this.roundActive = false;
         this.turnActive = false;
+        this.canPlay = false;
         break;
       }
 
       default: {
-        console.log('Unhandled event.', event);
+        console.log('Unhandled event in lobby component:', event);
       }
     }
   }
 
   playWhiteCard(card: WhiteCard) {
-    if (!this.turnActive) {
+    if (!this.canPlay) {
       return;
     }
+    this.canPlay = false;
     this.removeCard(card, this.personalWhiteCards);
     this._websocketConnectionService.send('move.move_play_white_card', {
       cardId: card.id
     });
-    this.turnActive = false;
   }
 
   requestNewGame() {
