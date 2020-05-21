@@ -13,23 +13,17 @@
       <h1 *ngIf="isLeader">Click "Start Game" to start the game.</h1>
       <h1 *ngIf="!isLeader">Waiting for the next game to start...</h1>
     </div>
-    <div class="black-card-container" *ngIf="gameActive">
-      <div *ngIf="currentBlackCard" class="card card-black">
-        {{ currentBlackCard.text }}
-      </div>
-    </div>
-    <div class="placed-white-cards" *ngIf="gameActive">
-      <h2>Placed White Cards</h2>
+    <div class="table" *ngIf="gameActive">
       <div class="card-list">
-        <div *ngIf="placedWhiteCards.length === 0">
-          (Click on a white card to place it, or wait for another user to place one)
+        <div *ngIf="currentBlackCard" class="card card-black">
+          {{ currentBlackCard.text }}
         </div>
         <div *ngFor="let whiteCard of placedWhiteCards" class="card card-white">
           {{ whiteCard.text }}
         </div>
       </div>
     </div>
-    <div class="personal-white-cards" *ngIf="gameActive">
+    <div class="personal-white-cards" *ngIf="roundActive">
       <h2>Personal White Cards</h2>
       <div class="card-list">
         <div *ngFor="let whiteCard of personalWhiteCards"
