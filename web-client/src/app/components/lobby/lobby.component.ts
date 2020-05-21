@@ -109,8 +109,6 @@ export class LobbyComponent implements OnInit, OnDestroy {
         break;
       }
 
-      // TODO: New leader.
-
       default: {
         console.log('Unhandled event.', event);
       }
