@@ -1,3 +1,5 @@
+@import "../../../variables";
+
 div {
   color: white;
 }
@@ -9,25 +11,21 @@ div {
   flex-wrap: wrap;
   height: 7vh;
   width: 100%;
-  background-color: black;
+  background-color: $color-dark;
   padding: 0 20px;
 }
 
-.logo {
-
-}
-
-.logo > a,
-.logo > a:visited {
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.logo-container {
+.branding {
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  & a,
+  & a:visited {
+    color: $color-text-branding;
+    font-weight: bold;
+    text-decoration: none;
+  }
 }
 
 .info-container {
