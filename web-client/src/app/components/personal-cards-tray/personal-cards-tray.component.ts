@@ -8,6 +8,7 @@ import WhiteCard from '../../model/white-card';
 })
 export class PersonalCardsTrayComponent implements OnInit {
 
+  @Input()
   isOpen: boolean;
 
   @Input()

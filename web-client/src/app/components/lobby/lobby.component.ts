@@ -29,6 +29,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   roundActive = false;
   turnActive = false;
   canPlay = false;
+  cardsTrayOpen = false;
 
   constructor(private _lobbyService: LobbyService,
               private _userService: UserService,
@@ -90,6 +91,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
       case 'gameupdate.game_update_new_black_card': {
         this.turnActive = true;
         this.canPlay = true;
+        this.cardsTrayOpen = true;
         this.placedWhiteCards = [];
         const cardData = event.data.card;
         this.currentBlackCard = new BlackCard(cardData.id, cardData.text, cardData.pick, null);
@@ -125,6 +127,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   }
 
   playWhiteCard(card: WhiteCard) {
+    this.cardsTrayOpen = false;
     if (!this.canPlay) {
       return;
     }
