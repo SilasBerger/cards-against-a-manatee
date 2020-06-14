@@ -9,10 +9,10 @@ div {
   flex-direction: row;
   align-items: stretch;
   flex-wrap: wrap;
-  height: 7vh;
+  height: $header-height;
   width: 100%;
-  background-color: $color-dark;
-  padding: 0 20px;
+  background-color: $almost-black;
+  padding: 0 $padding-sides-default;
 }
 
 .branding {

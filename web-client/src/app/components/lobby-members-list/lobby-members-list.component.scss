@@ -1,27 +1,46 @@
-$card-color: #F03BF1;
+@import "../../../variables";
 
-.member-card {
-  background-color: $card-color;
-  width: 250px;
-  height: 70px;
+$card-color: #F03BF1;
+$card-spacing: 20px;
+
+.members-list {
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  padding: 0 30px;
-  margin-bottom: 30px;
-  font-weight: bold;
-  border-width: 3px;
-  border-color: $card-color;
-  border-style: solid;
-  border-radius: 200px;
+  justify-content: flex-start;
+  background-color: $dark-gray;
+  padding: 15px $padding-sides-default;
+  // TODO: Hide overflow at padding, add horizontal scrolling to container.
+  flex-wrap: nowrap;
+  overflow: hidden;
+
+  & .member-card {
+    background-color: $card-color;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-width: 2px;
+    border-color: $card-color;
+    border-style: solid;
+    border-radius: 200px;
+    padding: 10px 15px;
+    margin-right: $card-spacing;
+
+    & .member-card-content {
+      color: white;
+      text-align: center;
+    }
+  }
+
+  & .member-card-leader {
+    border-color: white;
+  }
 }
 
-.member-card-leader {
-  border-color: white;
-}
 
-.member-card-content {
-  color: white;
-  text-align: center;
-}
+
+
+
+

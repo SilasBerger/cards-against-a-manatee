@@ -1,7 +1,9 @@
-<div *ngFor="let member of members">
-  <div class="member-card" [class.member-card-leader]="member.id === leaderId">
-    <div class="member-card-content">
-      {{ member.userName }}
+<div class="members-list">
+  <div *ngFor="let member of members">
+    <div class="member-card" [class.member-card-leader]="member.id === leaderId">
+      <div class="member-card-content">
+        {{ member.userName }}
+      </div>
     </div>
   </div>
 </div>
