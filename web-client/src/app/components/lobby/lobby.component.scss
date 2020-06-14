@@ -1,4 +1,4 @@
-@import "../../../variables.scss";
+@import "../../../variables";
 
 $padding-top: 30px;
 
@@ -52,12 +52,14 @@ $padding-top: 30px;
   height: 600px;
 }
 
-.placed-white-cards {
-
-}
-
-.personal-white-cards {
-
+.personal-cards-tray {
+  position: fixed;
+  bottom: -25vh;
+  left: 10%;
+  background-color: green;
+  width: 80%;
+  border-radius: 50px;
+  height: 50vh;
 }
 
 .card {

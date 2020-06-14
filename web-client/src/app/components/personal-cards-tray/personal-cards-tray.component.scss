@@ -1,0 +1,35 @@
+@import "../../../variables";
+
+$max-elevation: 50vh;
+$fab-diameter: 65px;
+$closed-tray-peak: 20px;
+$fab-top-offset: calc(-1 * (#{$fab-diameter} / 2));
+$transition-duration: 500ms;
+
+.personal-cards-tray {
+  position: fixed;
+  bottom: calc(-#{$max-elevation} + #{$closed-tray-peak});
+  left: 10%;
+  z-index: $layer-personal-cards-tray;
+  background-color: green;
+  width: 80%;
+  border-radius: $fab-diameter $fab-diameter 0 0;
+  height: 50vh;
+  transition: bottom $transition-duration;
+}
+
+.personal-cards-tray-open {
+  bottom: 0;
+  transition: bottom $transition-duration;
+}
+
+.cards-tray-toggle {
+  position: absolute;
+  top: $fab-top-offset;
+  width: $fab-diameter;
+  height: $fab-diameter;
+  border-radius: $fab-diameter;
+  left: calc(50% - (#{$fab-diameter} / 2));
+
+  padding: 0;
+}

@@ -22,15 +22,5 @@
     <h1 *ngIf="!isLeader">Waiting for the next game to start...</h1>
   </div>-->
 
-  <div class="personal-white-cards" *ngIf="roundActive">
-    <h2>Personal White Cards</h2>
-    <div class="card-list">
-      <div *ngFor="let whiteCard of personalWhiteCards"
-           (click)="playWhiteCard(whiteCard)"
-           class="card card-white"
-           [class.card-white-playable]="canPlay">
-        {{ whiteCard.text }}
-      </div>
-    </div>
-  </div>
+  <app-personal-cards-tray></app-personal-cards-tray>
 </div>

@@ -1,0 +1,15 @@
+<div class="personal-cards-tray" [class.personal-cards-tray-open]="isOpen">
+  <button
+    class="btn btn-primary cards-tray-toggle personal-cards-tray-open"
+    (click)="toggleTray()">^</button>
+  <!--
+  <div class="card-list">
+    <div *ngFor="let whiteCard of personalWhiteCards"
+         (click)="playWhiteCard(whiteCard)"
+         class="card card-white"
+         [class.card-white-playable]="canPlay">
+      {{ whiteCard.text }}
+    </div>
+  </div>
+  -->
+</div>

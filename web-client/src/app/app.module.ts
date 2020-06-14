@@ -18,6 +18,7 @@ import { LobbyComponent } from './components/lobby/lobby.component';
 import { LobbyMembersListComponent } from './components/lobby-members-list/lobby-members-list.component';
 import { GameComponent } from './components/game/game.component';
 import {ApplicationRoute} from './routing/routing';
+import { PersonalCardsTrayComponent } from './components/personal-cards-tray/personal-cards-tray.component';
 
 const root = [
   { path: ApplicationRoute.CreateUser.valueOf(), component: CreateUserComponent },
@@ -36,7 +37,8 @@ const root = [
     ErrorComponent,
     LobbyComponent,
     LobbyMembersListComponent,
-    GameComponent
+    GameComponent,
+    PersonalCardsTrayComponent
   ],
   imports: [
     BrowserModule,
