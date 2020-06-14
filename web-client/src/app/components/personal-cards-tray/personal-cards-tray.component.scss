@@ -33,6 +33,14 @@ $tray-width: 90%;
   left: calc(50% - (#{$fab-diameter} / 2));
   padding: 0;
   margin: 0;
+  background-color: black;
+  color: white;
+  transition: font-size 100ms;
+
+  &:hover {
+    font-size: 1.7em;
+    transition: font-size 100ms;
+  }
 
   & .toggle-icon {
     transform: rotate(0);
