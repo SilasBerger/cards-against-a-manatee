@@ -1,7 +1,9 @@
 <div class="personal-cards-tray" [class.personal-cards-tray-open]="isOpen">
   <button
-    class="btn btn-primary cards-tray-toggle personal-cards-tray-open"
-    (click)="toggleTray()"><i class="fas fa-chevron-up"></i></button>
+    class="btn btn-primary cards-tray-toggle-fab personal-cards-tray-open"
+    (click)="toggleTray()">
+    <i class="fas fa-chevron-up toggle-icon" [class.toggle-icon-down]="isOpen"></i>
+  </button>
   <!--
   <div class="card-list">
     <div *ngFor="let whiteCard of personalWhiteCards"

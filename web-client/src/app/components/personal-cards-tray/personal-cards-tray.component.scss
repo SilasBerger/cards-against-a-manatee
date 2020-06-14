@@ -1,20 +1,21 @@
 @import "../../../variables";
 
-$max-elevation: 50vh;
+$max-elevation: 60vh;
 $fab-diameter: 65px;
-$closed-tray-peak: 20px;
-$fab-top-offset: calc(-1 * (#{$fab-diameter} / 2));
+$closed-tray-peak: 30px;
+$fab-top-offset: calc(-1 * (#{$fab-diameter} * (2 / 5)));
 $transition-duration: 500ms;
+$tray-width: 90%;
 
 .personal-cards-tray {
   position: fixed;
   bottom: calc(-#{$max-elevation} + #{$closed-tray-peak});
-  left: 10%;
+  left: calc((100% - #{$tray-width}) / 2);
   z-index: $layer-personal-cards-tray;
   background-color: green;
-  width: 80%;
+  width: $tray-width;
   border-radius: $fab-diameter $fab-diameter 0 0;
-  height: 50vh;
+  height: $max-elevation;
   transition: bottom $transition-duration;
 }
 
@@ -23,13 +24,20 @@ $transition-duration: 500ms;
   transition: bottom $transition-duration;
 }
 
-.cards-tray-toggle {
+.cards-tray-toggle-fab {
   position: absolute;
   top: $fab-top-offset;
   width: $fab-diameter;
   height: $fab-diameter;
   border-radius: $fab-diameter;
   left: calc(50% - (#{$fab-diameter} / 2));
-
   padding: 0;
+
+  & .toggle-icon {
+    transform: rotate(0);
+  }
+
+  & .toggle-icon-down {
+    transform: rotate(180deg);
+  }
 }
