@@ -11,7 +11,11 @@
       <div *ngIf="currentBlackCard" class="card card-black">
         {{ currentBlackCard.text }}
       </div>
-      <div *ngFor="let whiteCard of placedWhiteCards" class="card card-white">
+    </div>
+    <div class="card-list">
+      <div *ngFor="let whiteCard of placedWhiteCards"
+           class="card card-white"
+           [class.card-white-first]="placedWhiteCards.length === 1">
         {{ whiteCard.text }}
       </div>
     </div>

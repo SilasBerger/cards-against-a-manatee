@@ -32,6 +32,7 @@ $tray-width: 90%;
   border-radius: $fab-diameter;
   left: calc(50% - (#{$fab-diameter} / 2));
   padding: 0;
+  margin: 0;
 
   & .toggle-icon {
     transform: rotate(0);
