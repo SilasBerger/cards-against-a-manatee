@@ -32,10 +32,10 @@ $card-spacing: 20px;
       color: white;
       text-align: center;
     }
-  }
 
-  & .member-card-leader {
-    border-color: white;
+    & .leader-icon {
+      margin-right: 10px;
+    }
   }
 }
 

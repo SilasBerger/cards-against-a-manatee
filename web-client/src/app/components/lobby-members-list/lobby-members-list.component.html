@@ -1,8 +1,8 @@
 <div class="members-list">
   <div *ngFor="let member of members">
-    <div class="member-card" [class.member-card-leader]="member.id === leaderId">
+    <div class="member-card">
       <div class="member-card-content">
-        {{ member.userName }}
+        <i class="fas fa-crown leader-icon" *ngIf="member.id === leaderId"></i>{{ member.userName }}
       </div>
     </div>
   </div>
