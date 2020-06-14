@@ -24,6 +24,7 @@
 
   <app-personal-cards-tray
     *ngIf="roundActive"
+    [canPlay]="canPlay"
     [personalCards]="personalWhiteCards"
     [cardPlayedCallback]="cardPlayedCallback"></app-personal-cards-tray>
 </div>

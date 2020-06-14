@@ -129,7 +129,6 @@ export class LobbyComponent implements OnInit, OnDestroy {
       return;
     }
     this.canPlay = false;
-    console.log(this);
     this.removeCard(card, this.personalWhiteCards);
     this._websocketConnectionService.send('move.move_play_white_card', {
       cardId: card.id

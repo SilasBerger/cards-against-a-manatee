@@ -9,7 +9,9 @@ import WhiteCard from '../../model/white-card';
 export class PersonalCardsTrayComponent implements OnInit {
 
   isOpen: boolean;
-  _canPlay: boolean;
+
+  @Input()
+  canPlay: boolean;
 
   // TODO: Make this generic to black and white cards.
   @Input()
@@ -20,7 +22,7 @@ export class PersonalCardsTrayComponent implements OnInit {
 
   constructor() {
     this.isOpen = false;
-    this._canPlay = true;
+    this.canPlay = true;
   }
 
   ngOnInit(): void {
@@ -36,14 +38,6 @@ export class PersonalCardsTrayComponent implements OnInit {
 
   hideTray() {
     this.isOpen = false;
-  }
-
-  get canPlay() {
-    return this._canPlay;
-  }
-
-  set canPlay(canPlay: boolean) {
-    this._canPlay = canPlay;
   }
 
   onCardPlayed(card: WhiteCard) {
