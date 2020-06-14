@@ -1,8 +1,8 @@
 <div class="container">
-  <button class="leader-button btn btn-primary" *ngIf="!gameActive" (click)="requestNewGame()">New Game</button>
-  <button class="leader-button btn btn-primary" *ngIf="gameActive && !gameOver && !roundActive" (click)="requestStartRound()">Start Game</button>
-  <button class="leader-button btn btn-primary" *ngIf="gameActive && roundActive && !turnActive" (click)="requestStartTurn()">Next Turn</button>
-  <button class="leader-button btn btn-primary" *ngIf="gameActive && gameOver" (click)="endGame()">End Game</button>
+  <button class="leader-button btn btn-primary" *ngIf="isLeader && !turnActive && !gameActive" (click)="requestNewGame()">New Game</button>
+  <button class="leader-button btn btn-primary" *ngIf="isLeader && !turnActive && gameActive && !gameOver && !roundActive" (click)="requestStartRound()">Start Game</button>
+  <button class="leader-button btn btn-primary" *ngIf="isLeader && !turnActive && gameActive && roundActive && !turnActive" (click)="requestStartTurn()">Next Turn</button>
+  <button class="leader-button btn btn-primary" *ngIf="isLeader && !turnActive && gameActive && gameOver" (click)="endGame()">End Game</button>
 
   <app-lobby-members-list [members]="members" [leaderId]="leaderId"></app-lobby-members-list>
 
