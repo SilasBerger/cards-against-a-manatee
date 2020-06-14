@@ -4,14 +4,16 @@
     (click)="toggleTray()">
     <i class="fas fa-chevron-up toggle-icon" [class.toggle-icon-down]="isOpen"></i>
   </button>
-  <!--
-  <div class="card-list">
-    <div *ngFor="let whiteCard of personalWhiteCards"
-         (click)="playWhiteCard(whiteCard)"
-         class="card card-white"
-         [class.card-white-playable]="canPlay">
-      {{ whiteCard.text }}
+
+  <div class="tray-content">
+    <div class="cards-list">
+      <div *ngFor="let card of personalCards"
+           (click)="onCardPlayed(card)"
+           class="card card-white"
+           [class.card-white-playable]="canPlay">
+        {{ card.text }}
+      </div>
     </div>
   </div>
-  -->
+
 </div>

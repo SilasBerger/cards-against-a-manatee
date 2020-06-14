@@ -22,5 +22,8 @@
     <h1 *ngIf="!isLeader">Waiting for the next game to start...</h1>
   </div>-->
 
-  <app-personal-cards-tray></app-personal-cards-tray>
+  <app-personal-cards-tray
+    *ngIf="roundActive"
+    [personalCards]="personalWhiteCards"
+    [cardPlayedCallback]="cardPlayedCallback"></app-personal-cards-tray>
 </div>

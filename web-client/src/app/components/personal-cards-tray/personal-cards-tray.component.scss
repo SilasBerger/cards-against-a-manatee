@@ -12,7 +12,7 @@ $tray-width: 90%;
   bottom: calc(-#{$max-elevation} + #{$closed-tray-peak});
   left: calc((100% - #{$tray-width}) / 2);
   z-index: $layer-personal-cards-tray;
-  background-color: green;
+  background-color: black;
   width: $tray-width;
   border-radius: $fab-diameter $fab-diameter 0 0;
   height: $max-elevation;
@@ -39,5 +39,51 @@ $tray-width: 90%;
 
   & .toggle-icon-down {
     transform: rotate(180deg);
+  }
+}
+
+.tray-content {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.cards-list {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: fit-content;
+}
+
+// TODO: Factor out - duplicated from lobby component.
+.card {
+  $side-length: 220px;
+  width: $side-length;
+  height: $side-length;
+  padding: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.card-black {
+  background-color: black;
+  color: white;
+}
+
+.card-white {
+  background-color: white;
+  color: black;
+
+}
+
+.card-white-playable {
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f1f1f1;
   }
 }

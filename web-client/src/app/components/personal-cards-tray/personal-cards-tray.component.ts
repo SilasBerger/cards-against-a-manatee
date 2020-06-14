@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import WhiteCard from '../../model/white-card';
 
 @Component({
   selector: 'app-personal-cards-tray',
@@ -8,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class PersonalCardsTrayComponent implements OnInit {
 
   isOpen: boolean;
+  _canPlay: boolean;
+
+  // TODO: Make this generic to black and white cards.
+  @Input()
+  personalCards: WhiteCard[];
+
+  @Input()
+  cardPlayedCallback: (card: WhiteCard) => void;
 
   constructor() {
     this.isOpen = false;
+    this._canPlay = true;
   }
 
   ngOnInit(): void {
@@ -26,6 +36,18 @@ export class PersonalCardsTrayComponent implements OnInit {
 
   hideTray() {
     this.isOpen = false;
+  }
+
+  get canPlay() {
+    return this._canPlay;
+  }
+
+  set canPlay(canPlay: boolean) {
+    this._canPlay = canPlay;
+  }
+
+  onCardPlayed(card: WhiteCard) {
+    this.cardPlayedCallback(card);
   }
 
 }
