@@ -1,0 +1,98 @@
+@import "../../../variables";
+
+$max-elevation: 60vh;
+$fab-diameter: 65px;
+$closed-tray-peak: 30px;
+$fab-top-offset: calc(-1 * (#{$fab-diameter} * (2 / 5)));
+$transition-duration: 500ms;
+$tray-width: 90%;
+
+.personal-cards-tray {
+  position: fixed;
+  bottom: calc(-#{$max-elevation} + #{$closed-tray-peak});
+  left: calc((100% - #{$tray-width}) / 2);
+  z-index: $layer-personal-cards-tray;
+  background-color: black;
+  width: $tray-width;
+  border-radius: $fab-diameter $fab-diameter 0 0;
+  height: $max-elevation;
+  transition: bottom $transition-duration;
+}
+
+.personal-cards-tray-open {
+  bottom: 0;
+  transition: bottom $transition-duration;
+}
+
+.cards-tray-toggle-fab {
+  position: absolute;
+  top: $fab-top-offset;
+  width: $fab-diameter;
+  height: $fab-diameter;
+  border-radius: $fab-diameter;
+  left: calc(50% - (#{$fab-diameter} / 2));
+  padding: 0;
+  margin: 0;
+  background-color: black;
+  color: white;
+  transition: font-size 100ms;
+
+  &:hover {
+    font-size: 1.7em;
+    transition: font-size 100ms;
+  }
+
+  & .toggle-icon {
+    transform: rotate(0);
+  }
+
+  & .toggle-icon-down {
+    transform: rotate(180deg);
+  }
+}
+
+.tray-content {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.cards-list {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: fit-content;
+}
+
+// TODO: Factor out - duplicated from lobby component.
+.card {
+  $side-length: 220px;
+  width: $side-length;
+  height: $side-length;
+  padding: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.card-black {
+  background-color: black;
+  color: white;
+}
+
+.card-white {
+  background-color: white;
+  color: black;
+
+}
+
+.card-white-playable {
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
+}

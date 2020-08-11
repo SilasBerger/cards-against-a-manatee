@@ -19,6 +19,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
   lobby: Lobby;
   private _wsSubscription: Subscription;
+  cardPlayedCallback: (card: WhiteCard) => void;
 
   personalWhiteCards: WhiteCard[] = [];
   placedWhiteCards: WhiteCard[] = [];
@@ -28,6 +29,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   roundActive = false;
   turnActive = false;
   canPlay = false;
+  cardsTrayOpen = false;
 
   constructor(private _lobbyService: LobbyService,
               private _userService: UserService,
@@ -39,6 +41,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
     this.lobby = this._lobbyService.lobby;
     this._wsSubscription = this._websocketConnectionService.onEventSubject
       .subscribe((event) => this.handleEvent(event));
+    this.cardPlayedCallback = ((card: WhiteCard) => this.playWhiteCard(card));
   }
 
   removeCard(card: WhiteCard, list: WhiteCard[]) {
@@ -88,6 +91,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
       case 'gameupdate.game_update_new_black_card': {
         this.turnActive = true;
         this.canPlay = true;
+        this.cardsTrayOpen = true;
         this.placedWhiteCards = [];
         const cardData = event.data.card;
         this.currentBlackCard = new BlackCard(cardData.id, cardData.text, cardData.pick, null);
@@ -123,6 +127,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   }
 
   playWhiteCard(card: WhiteCard) {
+    this.cardsTrayOpen = false;
     if (!this.canPlay) {
       return;
     }

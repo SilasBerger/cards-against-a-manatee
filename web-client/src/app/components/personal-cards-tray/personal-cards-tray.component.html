@@ -1,0 +1,19 @@
+<div class="personal-cards-tray" [class.personal-cards-tray-open]="isOpen">
+  <button
+    class="btn cards-tray-toggle-fab personal-cards-tray-open"
+    (click)="toggleTray()">
+    <i class="fas fa-chevron-up toggle-icon" [class.toggle-icon-down]="isOpen"></i>
+  </button>
+
+  <div class="tray-content">
+    <div class="cards-list">
+      <div *ngFor="let card of personalCards"
+           (click)="onCardPlayed(card)"
+           class="card card-white"
+           [class.card-white-playable]="canPlay">
+        {{ card.text }}
+      </div>
+    </div>
+  </div>
+
+</div>

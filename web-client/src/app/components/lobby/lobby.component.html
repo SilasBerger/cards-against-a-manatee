@@ -1,38 +1,35 @@
 <div class="container">
-  <div class="left">
-    <div *ngIf="isLeader && !turnActive" class="leader-buttons">
-      <button class="btn btn-primary" *ngIf="!gameActive" (click)="requestNewGame()">New Game</button>
-      <button class="btn btn-primary" *ngIf="gameActive && !gameOver && !roundActive" (click)="requestStartRound()">Start Game</button>
-      <button class="btn btn-primary" *ngIf="gameActive && roundActive && !turnActive" (click)="requestStartTurn()">Next Turn</button>
-      <button class="btn btn-primary" *ngIf="gameActive && gameOver" (click)="endGame()">End Game</button>
-    </div>
-    <app-lobby-members-list [members]="members" [leaderId]="leaderId"></app-lobby-members-list>
-  </div>
-  <div class="right">
-    <div *ngIf="!gameActive">
-      <h1 *ngIf="isLeader">Click "Start Game" to start the game.</h1>
-      <h1 *ngIf="!isLeader">Waiting for the next game to start...</h1>
-    </div>
-    <div class="table" *ngIf="gameActive">
-      <div class="card-list">
-        <div *ngIf="currentBlackCard" class="card card-black">
-          {{ currentBlackCard.text }}
-        </div>
-        <div *ngFor="let whiteCard of placedWhiteCards" class="card card-white">
-          {{ whiteCard.text }}
-        </div>
+  <button class="leader-button btn btn-primary" *ngIf="isLeader && !turnActive && !gameActive" (click)="requestNewGame()">New Game</button>
+  <button class="leader-button btn btn-primary" *ngIf="isLeader && !turnActive && gameActive && !gameOver && !roundActive" (click)="requestStartRound()">Start Game</button>
+  <button class="leader-button btn btn-primary" *ngIf="isLeader && !turnActive && gameActive && roundActive && !turnActive" (click)="requestStartTurn()">Next Turn</button>
+  <button class="leader-button btn btn-primary" *ngIf="isLeader && !turnActive && gameActive && gameOver" (click)="endGame()">End Game</button>
+
+  <app-lobby-members-list [members]="members" [leaderId]="leaderId"></app-lobby-members-list>
+
+  <div class="game-table" *ngIf="gameActive">
+    <div class="card-list">
+      <div *ngIf="currentBlackCard" class="card card-black">
+        {{ currentBlackCard.text }}
       </div>
     </div>
-    <div class="personal-white-cards" *ngIf="roundActive">
-      <h2>Personal White Cards</h2>
-      <div class="card-list">
-        <div *ngFor="let whiteCard of personalWhiteCards"
-             (click)="playWhiteCard(whiteCard)"
-             class="card card-white"
-             [class.card-white-playable]="canPlay">
-          {{ whiteCard.text }}
-        </div>
+    <div class="card-list">
+      <div *ngFor="let whiteCard of placedWhiteCards"
+           class="card card-white"
+           [class.card-white-first]="placedWhiteCards.length === 1">
+        {{ whiteCard.text }}
       </div>
     </div>
   </div>
+
+  <!--<div *ngIf="!gameActive">
+    <h1 *ngIf="isLeader">Click "Start Game" to start the game.</h1>
+    <h1 *ngIf="!isLeader">Waiting for the next game to start...</h1>
+  </div>-->
+
+  <app-personal-cards-tray
+    *ngIf="roundActive"
+    [isOpen]="cardsTrayOpen"
+    [canPlay]="canPlay"
+    [personalCards]="personalWhiteCards"
+    [cardPlayedCallback]="cardPlayedCallback"></app-personal-cards-tray>
 </div>

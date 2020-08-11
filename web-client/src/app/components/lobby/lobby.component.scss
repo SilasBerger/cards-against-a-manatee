@@ -1,10 +1,9 @@
+@import "../../../variables";
+
 $padding-top: 30px;
 
-.container {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  width: 99vw;
+.members-list {
+  width: 100%;
 }
 
 .left {
@@ -22,6 +21,24 @@ $padding-top: 30px;
   flex: 1;
 }
 
+.game-table {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.leader-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: $layer-floating-buttons;
+  margin: 40px;
+  box-shadow: 3px 5px 5px rgba(120, 120, 120, 0.7);
+}
+
 .leader-buttons {
   // margin-top: $padding-top;
   display: flex;
@@ -31,25 +48,14 @@ $padding-top: 30px;
   margin-bottom: $padding-top;
 }
 
-.table {
-
-}
-
 .card-list {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
-  height: 600px;
-}
-
-.placed-white-cards {
-
-}
-
-.personal-white-cards {
-
+  margin-bottom: 20px;
+  // height: 600px;
 }
 
 .card {
@@ -63,12 +69,16 @@ $padding-top: 30px;
 .card-black {
   background-color: black;
   color: white;
+  margin: 0;
 }
 
 .card-white {
   background-color: white;
   color: black;
+}
 
+.card-white-first {
+  margin: 0;
 }
 
 .card-white-playable {
