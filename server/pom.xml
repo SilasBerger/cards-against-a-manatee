@@ -10,7 +10,7 @@
     </parent>
     <groupId>ch.silasberger</groupId>
     <artifactId>cards-against-a-manatee</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0</version>
     <name>cards-against-a-manatee</name>
     <description>Prototype for the Cards on the Web backend</description>
 

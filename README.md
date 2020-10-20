@@ -11,5 +11,16 @@ Manatees (family Trichechidae, genus Trichechus) are large, fully aquatic, mostl
 - `exit`
 - `docker-compose down`
 
+### Running the Database for Development
+After the initial database setup, run `docker-compose up -d database`.
+
+### Building the Application
+- Make sure you have Maven, npm, Docker and docker-compose installed on your system
+- Make sure you have completed the "Initial Database Setup" step
+- Run `./build.sh`
+
+### Running the Application
+After building the application, run `docker-compose up -d`.
+
 ## Current Project State
 This project is currently under construction. Release v0.1.0 marks the first playable prototype. However, most components will undergo signigicant changes before a version v1.0.0 will get released.

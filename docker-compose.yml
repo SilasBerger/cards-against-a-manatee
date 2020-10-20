@@ -11,6 +11,22 @@ services:
             - ./data:/mnt/host:ro
         environment: 
             - MYSQL_ROOT_PASSWORD=RosewoodSilverSpoon
+    server:
+        build: ./server
+        ports:
+            - 8080:8080
+        networks:
+            - manatee
+        depends_on: 
+            - database
+    web:
+        build: ./web-client
+        ports:
+            - 80:80
+        networks:
+            - manatee
+        depends_on: 
+            - server
 
 networks:
     manatee:
