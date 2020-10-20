@@ -17,6 +17,7 @@ $tray-width: 90%;
   border-radius: $fab-diameter $fab-diameter 0 0;
   height: $max-elevation;
   transition: bottom $transition-duration;
+  padding: 50px;
 }
 
 .personal-cards-tray-open {
@@ -52,11 +53,23 @@ $tray-width: 90%;
 }
 
 .tray-content {
-  padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  max-height: $max-elevation;
+  overflow: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.tray-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.tray-content {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .cards-list {
