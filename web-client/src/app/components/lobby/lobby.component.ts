@@ -19,13 +19,17 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
   lobby: Lobby;
   private _wsSubscription: Subscription;
+  cardPlayedCallback: (card: WhiteCard) => void;
 
   personalWhiteCards: WhiteCard[] = [];
   placedWhiteCards: WhiteCard[] = [];
   currentBlackCard: BlackCard = null;
   gameActive = false;
+  gameOver = false;
   roundActive = false;
   turnActive = false;
+  canPlay = false;
+  cardsTrayOpen = false;
 
   constructor(private _lobbyService: LobbyService,
               private _userService: UserService,
@@ -37,6 +41,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
     this.lobby = this._lobbyService.lobby;
     this._wsSubscription = this._websocketConnectionService.onEventSubject
       .subscribe((event) => this.handleEvent(event));
+    this.cardPlayedCallback = ((card: WhiteCard) => this.playWhiteCard(card));
   }
 
   removeCard(card: WhiteCard, list: WhiteCard[]) {
@@ -65,6 +70,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
     switch (event.headers.eventName) {
       case 'notification.notify_game_started': {
         this.gameActive = true;
+        this.gameOver = false;
         this.currentBlackCard = null;
         this.placedWhiteCards = [];
         this.personalWhiteCards = [];
@@ -84,6 +90,8 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
       case 'gameupdate.game_update_new_black_card': {
         this.turnActive = true;
+        this.canPlay = true;
+        this.cardsTrayOpen = true;
         this.placedWhiteCards = [];
         const cardData = event.data.card;
         this.currentBlackCard = new BlackCard(cardData.id, cardData.text, cardData.pick, null);
@@ -100,27 +108,30 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
       case 'gameupdate.game_update_turn_over': {
         this.turnActive = false;
+        this.canPlay = false;
         break;
       }
 
       case 'gameupdate.game_update_game_over': {
+        this.gameOver = true;
         this.roundActive = false;
         this.turnActive = false;
+        this.canPlay = false;
         break;
       }
 
-      // TODO: New leader.
-
       default: {
-        console.log('Unhandled event.', event);
+        console.log('Unhandled event in lobby component:', event);
       }
     }
   }
 
   playWhiteCard(card: WhiteCard) {
-    if (!this.turnActive) {
+    this.cardsTrayOpen = false;
+    if (!this.canPlay) {
       return;
     }
+    this.canPlay = false;
     this.removeCard(card, this.personalWhiteCards);
     this._websocketConnectionService.send('move.move_play_white_card', {
       cardId: card.id
@@ -145,6 +156,11 @@ export class LobbyComponent implements OnInit, OnDestroy {
     this._websocketConnectionService.send('gamerequest.game_request_next_turn', {});
   }
 
+  endGame() {
+    this.gameActive = false;
+    this.gameOver = false;
+  }
+
   get isLeader() {
     return this._userService.userId === this.lobby.leaderId;
   }
@@ -161,4 +177,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
     });
   }
 
+  get leaderId(): string {
+    return this.lobby.leaderId;
+  }
 }

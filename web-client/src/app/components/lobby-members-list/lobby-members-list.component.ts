@@ -11,6 +11,9 @@ export class LobbyMembersListComponent implements OnInit {
   @Input()
   members: User[];
 
+  @Input()
+  leaderId: string;
+
   constructor() { }
 
   ngOnInit(): void {

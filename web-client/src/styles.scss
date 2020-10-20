@@ -1,3 +1,5 @@
+@import "./variables";
+
 * {
   box-sizing: border-box;
 }
@@ -6,5 +8,79 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: "Montserrat", sans-serif;
-  background-color: aqua;
+  background-color: $color-primary;
+  color: $color-text-primary;
+}
+
+h1.headline {
+  font-size: 80pt;
+}
+
+.comp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type=text].big-input {
+  border-radius: 100px;
+  border-style: solid;
+  background-color: white;
+  border-color: #636363;
+  padding: 20px 30px;
+  margin-bottom: 50px;
+  width: 500px;
+  font-size: 18pt;
+  text-align: center;
+  color: #636363;
+}
+
+input[type=text].big-input:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: #dddddd;
+}
+
+.btn {
+  padding: 20px 30px;
+  border-color: black;
+  border-radius: 200px;
+  border-style: solid;
+  font-size: 18pt;
+  font-weight: bold;
+  margin: 0 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-primary {
+  color: white;
+  background-color: black;
+
+  &:hover {
+    background-color: $color-btn-hover;
+    border-color: $color-btn-hover;
+  }
+}
+
+.btn-secondary {
+  color: black;
+  background-color: rgba(0, 0, 0, 0);
+
+  &:hover {
+    &:hover {
+      background-color: $color-btn-hover;
+      border-color: $color-btn-hover;
+      color: white;
+    }
+  }
 }

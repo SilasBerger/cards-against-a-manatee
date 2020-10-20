@@ -1,3 +1,5 @@
+@import "../../../variables";
+
 div {
   color: white;
 }
@@ -7,27 +9,23 @@ div {
   flex-direction: row;
   align-items: stretch;
   flex-wrap: wrap;
-  height: 7vh;
+  height: $header-height;
   width: 100%;
-  background-color: black;
-  padding: 0 20px;
+  background-color: $almost-black;
+  padding: 0 $padding-sides-default;
 }
 
-.logo {
-
-}
-
-.logo > a,
-.logo > a:visited {
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.logo-container {
+.branding {
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  & a,
+  & a:visited {
+    color: $color-text-branding;
+    font-weight: bold;
+    text-decoration: none;
+  }
 }
 
 .info-container {

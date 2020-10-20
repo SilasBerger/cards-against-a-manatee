@@ -1,8 +1,13 @@
-<div class="container">
-  <h1>Join Lobby</h1>
-  <input [(ngModel)]="lobbyId" type="text" spellcheck="false" placeholder="The lobby id... (you dick)">
+<div class="comp-container">
+  <h1 class="headline">Join Lobby</h1>
+  <input
+    class="big-input"
+    [(ngModel)]="lobbyId"
+    type="text"
+    spellcheck="false"
+    placeholder="The lobby id (duh...)">
   <div class="button-row">
-    <button (click)="onJoin()">Join</button>
-    <button (click)="onCreate()">Create New Lobby</button>
+    <button (click)="onCreate()" class="btn btn-secondary">Create New</button>
+    <button (click)="onJoin()" class="btn btn-primary">Join Lobby</button>
   </div>
 </div>

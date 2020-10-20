@@ -1,7 +1,9 @@
-<div *ngFor="let member of members">
-  <div class="member-card">
-    <div class="member-card-content">
-      {{ member.userName }}
+<div class="members-list">
+  <div *ngFor="let member of members">
+    <div class="member-card">
+      <div class="member-card-content">
+        <i class="fas fa-crown leader-icon" *ngIf="member.id === leaderId"></i>{{ member.userName }}
+      </div>
     </div>
   </div>
 </div>

@@ -1,10 +1,9 @@
+@import "../../../variables";
+
 $padding-top: 30px;
 
-.container {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  width: 99vw;
+.members-list {
+  width: 100%;
 }
 
 .left {
@@ -22,6 +21,24 @@ $padding-top: 30px;
   flex: 1;
 }
 
+.game-table {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.leader-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: $layer-floating-buttons;
+  margin: 40px;
+  box-shadow: 3px 5px 5px rgba(120, 120, 120, 0.7);
+}
+
 .leader-buttons {
   // margin-top: $padding-top;
   display: flex;
@@ -31,25 +48,14 @@ $padding-top: 30px;
   margin-bottom: $padding-top;
 }
 
-.black-card-container {
-
-}
-
 .card-list {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
-  height: 300px;
-}
-
-.placed-white-cards {
-
-}
-
-.personal-white-cards {
-
+  margin-bottom: 20px;
+  // height: 600px;
 }
 
 .card {
@@ -60,30 +66,25 @@ $padding-top: 30px;
   margin-bottom: 20px;
 }
 
-.black-card {
+.card-black {
   background-color: black;
   color: white;
+  margin: 0;
 }
 
-.white-card {
+.card-white {
   background-color: white;
   color: black;
-  cursor: pointer;
 }
 
-.personal-white-cards .white-card:hover {
-  background-color: #f1f1f1;
+.card-white-first {
+  margin: 0;
 }
 
-button {
-  background-color: black;
-  color: white;
-  padding: 20px 30px;
-  border-color: black;
-  border-radius: 200px;
-  border-style: solid;
-  font-size: 18pt;
-  font-weight: bold;
-  margin: 0 10px;
+.card-white-playable {
   cursor: pointer;
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
 }
