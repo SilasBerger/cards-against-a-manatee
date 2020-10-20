@@ -6,3 +6,6 @@ Manatees (family Trichechidae, genus Trichechus) are large, fully aquatic, mostl
 
 ## 🎯 Current Project Status
 This project is still in early development. However, the state on this branch is already playable. Build and usage instructions as well as a Docker deployment are being worked on (see the `topic/cleanup-and-dockerize` branch).
+
+## ⚖️ License
+[Creative Commons BY-NC-SA 2.0](http://creativecommons.org/licenses/by-nc-sa/2.0/)
