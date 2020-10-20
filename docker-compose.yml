@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+    database:
+        image: mysql:8
+        ports:
+            - 3306:3306
+        networks:
+            - manatee
+        volumes:
+            - database_data:/var/lib/mysql
+            - ./data:/mnt/host:ro
+        environment: 
+            - MYSQL_ROOT_PASSWORD=RosewoodSilverSpoon
+
+networks:
+    manatee:
+
+volumes:
+    database_data:
