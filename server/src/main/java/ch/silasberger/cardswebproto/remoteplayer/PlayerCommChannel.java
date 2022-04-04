@@ -9,10 +9,10 @@ import ch.silasberger.cardswebproto.event.events.AbstractEvent;
 import ch.silasberger.cardswebproto.event.events.clienterror.*;
 import ch.silasberger.cardswebproto.event.events.gameupdate.AbstractGameUpdateEvent;
 import ch.silasberger.cardswebproto.event.events.notification.*;
+import ch.silasberger.cardswebproto.util.ApplicationException;
 import io.reactivex.rxjava3.disposables.Disposable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 public abstract class PlayerCommChannel implements EventHandler {
 
@@ -80,7 +80,7 @@ public abstract class PlayerCommChannel implements EventHandler {
     // ============== EventHandler ==================
 
     @Override
-    public void onEvent(AbstractEvent event) {
+    public void onEvent(AbstractEvent event) throws ApplicationException {
         event.executeOn(this);
     }
 

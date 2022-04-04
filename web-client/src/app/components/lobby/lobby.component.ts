@@ -140,10 +140,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
   requestNewGame() {
     console.log('Requesting start game.');
-    this._websocketConnectionService.send('request.request_new_game', {
-      gameModeName: '',
-      ruleSet: {}
-    });
+    this._websocketConnectionService.send('request.request_new_game', {});
   }
 
   requestStartRound() {

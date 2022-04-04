@@ -1,26 +1,31 @@
 package ch.silasberger.cardswebproto.comm;
 
-import ch.silasberger.cardswebproto.event.EventTypeProvider;
 import ch.silasberger.cardswebproto.event.EventHandler;
 import ch.silasberger.cardswebproto.event.EventHeaders;
+import ch.silasberger.cardswebproto.event.EventTypeProvider;
 import ch.silasberger.cardswebproto.event.events.AbstractEvent;
 import ch.silasberger.cardswebproto.event.events.move.AbstractMoveEvent;
 import ch.silasberger.cardswebproto.event.events.request.AbstractRequestEvent;
 import ch.silasberger.cardswebproto.remoteplayer.RemotePlayer;
+import ch.silasberger.cardswebproto.util.ApplicationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EventMarshaller {
 
     private final ObjectMapper objectMapper;
     private final EventPostProcessor eventPostProcessor;
+    private final Logger logger;
 
     public EventMarshaller(RemotePlayer owner) {
         this.eventPostProcessor = new EventPostProcessor(owner);
         this.objectMapper = new ObjectMapper();
         this.objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        this.logger = LoggerFactory.getLogger(EventMarshaller.class);
     }
 
     public JsonEventRepresentation asJsonEventRepresentation(String jsonString) {
@@ -71,6 +76,9 @@ public class EventMarshaller {
             return event;
         } catch (JsonProcessingException e) {
             return null;
+        } catch (ApplicationException e) {
+            logger.error(e.toString());
+            return null;
         }
     }
 
@@ -83,7 +91,7 @@ public class EventMarshaller {
         }
 
         @Override
-        public void onEvent(AbstractEvent event) {
+        public void onEvent(AbstractEvent event) throws ApplicationException {
             event.executeOn(this);
         }
 

@@ -6,6 +6,7 @@ import ch.silasberger.cardswebproto.event.events.AbstractEvent;
 import ch.silasberger.cardswebproto.game.state.states.AbstractGameState;
 import ch.silasberger.cardswebproto.lobby.Lobby;
 import ch.silasberger.cardswebproto.lobby.LobbyMember;
+import ch.silasberger.cardswebproto.util.ApplicationException;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 import java.util.Set;
@@ -34,7 +35,7 @@ public abstract class AbstractGameMode implements EventHandler {
     }
 
     @Override
-    public void onEvent(AbstractEvent event) {
+    public void onEvent(AbstractEvent event) throws ApplicationException {
         currentState = currentState.transition(event);
     }
 
