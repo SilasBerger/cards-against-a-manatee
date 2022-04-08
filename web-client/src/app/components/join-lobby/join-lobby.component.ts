@@ -42,7 +42,9 @@ export class JoinLobbyComponent implements OnInit {
       console.error('Invalid lobby id.');
       return;
     }
-    this._websocketConnectionService.onEventSubject.pipe(first()).subscribe((event) => this.onEvent(event));
+    this._websocketConnectionService.onEventSubject
+      .pipe(first())
+      .subscribe((event) => this.onEvent(event));
     this._websocketConnectionService.send('request.request_join_lobby', { lobbyId: this.lobbyId });
   }
 
