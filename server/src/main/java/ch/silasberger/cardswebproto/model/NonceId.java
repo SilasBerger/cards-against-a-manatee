@@ -8,7 +8,7 @@ import java.util.Random;
 public class NonceId {
 
     public static final String charset = "ABCDEFGHJKLMNPQRSTUVWXYZ1234567890";
-    public static final int NUM_BLOCKS = 3;
+    public static final int NUM_BLOCKS = 1;
     public static final int BLOCK_LENGTH = 4;
     public static final char BLOCK_DELIMITER = '-';
 
