@@ -38,5 +38,11 @@ we have a card package called `default`, and we set `CARD_PACKS_BASE_PATH=/home/
 - The game currently only supports single-pick cards. That is, black cards with a pick value (third column) of anything
 other than 1 are ignored.
 
+### Build & Run
+1. Place your card packages (see above) into `server/cards`, creating the `cards` directory as needed. Currently, only the `default` cards package is supported. Hence, you should have two files: `server/cards/default/black_cards.csv` and `server/cards/default/white_cards.csv`.
+2. Run `./build-image.sh` from the root of this repo, to build the two Docker images `manatee/server` and `manatee/web`
+3. Run `docker compose up -d` to start the stack
+4. Visit [http://localhost:4200](http://localhost:4200) to play
+
 ## Current Project State
 This project is currently under construction. Release v0.1.0 marks the first playable prototype. However, most components will undergo signigicant changes before a version v1.0.0 will get released.
