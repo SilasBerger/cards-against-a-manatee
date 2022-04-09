@@ -11,8 +11,11 @@ import ch.silasberger.cardswebproto.event.events.notification.NotifyPlayerLeftLo
 import ch.silasberger.cardswebproto.game.state.states.AbstractGameState;
 import ch.silasberger.cardswebproto.lobby.Lobby;
 import ch.silasberger.cardswebproto.lobby.LobbyMember;
-import ch.silasberger.cardswebproto.model.*;
+import ch.silasberger.cardswebproto.model.BlackCardRepresentation;
+import ch.silasberger.cardswebproto.model.CardsCollection;
+import ch.silasberger.cardswebproto.model.WhiteCardRepresentation;
 import ch.silasberger.cardswebproto.remoteplayer.RemotePlayerRegistry;
+import ch.silasberger.cardswebproto.util.ApplicationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +46,7 @@ public class FreeRoamGameMode extends AbstractGameMode {
         }
 
         @Override
-        public void onEvent(AbstractEvent event) {
+        public void onEvent(AbstractEvent event) throws ApplicationException {
             event.executeOn(this);
         }
 
@@ -72,7 +75,7 @@ public class FreeRoamGameMode extends AbstractGameMode {
     private class TurnReadyState extends AbstractGameState {
 
         @Override
-        public void onEvent(AbstractEvent event) {
+        public void onEvent(AbstractEvent event) throws ApplicationException {
             event.executeOn(this);
         }
 
@@ -97,7 +100,7 @@ public class FreeRoamGameMode extends AbstractGameMode {
         }
 
         @Override
-        public void onEvent(AbstractEvent event) {
+        public void onEvent(AbstractEvent event) throws ApplicationException {
             event.executeOn(this);
         }
 

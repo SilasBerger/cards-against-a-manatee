@@ -3,6 +3,7 @@ package ch.silasberger.cardswebproto.game.state.states;
 
 import ch.silasberger.cardswebproto.event.EventHandler;
 import ch.silasberger.cardswebproto.event.events.AbstractEvent;
+import ch.silasberger.cardswebproto.util.ApplicationException;
 
 public abstract class AbstractGameState implements EventHandler {
 
@@ -12,7 +13,7 @@ public abstract class AbstractGameState implements EventHandler {
         this.nextState = this;
     }
 
-    public AbstractGameState transition(AbstractEvent event) {
+    public AbstractGameState transition(AbstractEvent event) throws ApplicationException {
         onEvent(event);
         return nextState;
     }

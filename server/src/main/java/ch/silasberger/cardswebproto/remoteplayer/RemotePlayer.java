@@ -16,6 +16,7 @@ import ch.silasberger.cardswebproto.lobby.Lobby;
 import ch.silasberger.cardswebproto.lobby.LobbyBroker;
 import ch.silasberger.cardswebproto.lobby.LobbyMember;
 import ch.silasberger.cardswebproto.model.InitialLobbyState;
+import ch.silasberger.cardswebproto.util.ApplicationException;
 import io.reactivex.rxjava3.disposables.Disposable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,7 +100,7 @@ public class RemotePlayer implements LobbyMember, EventHandler {
 
     // ========================= EventHandler =======================
     @Override
-    public void onEvent(AbstractEvent event) {
+    public void onEvent(AbstractEvent event) throws ApplicationException {
         event.executeOn(this);
     }
 

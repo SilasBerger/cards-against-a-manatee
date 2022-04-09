@@ -1,6 +1,7 @@
 ignore/**
 HELP.md
 target/
+cards/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**

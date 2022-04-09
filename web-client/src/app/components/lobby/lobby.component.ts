@@ -91,7 +91,6 @@ export class LobbyComponent implements OnInit, OnDestroy {
       case 'gameupdate.game_update_new_black_card': {
         this.turnActive = true;
         this.canPlay = true;
-        this.cardsTrayOpen = true;
         this.placedWhiteCards = [];
         const cardData = event.data.card;
         this.currentBlackCard = new BlackCard(cardData.id, cardData.text, cardData.pick, null);
@@ -140,10 +139,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
   requestNewGame() {
     console.log('Requesting start game.');
-    this._websocketConnectionService.send('request.request_new_game', {
-      gameModeName: '',
-      ruleSet: {}
-    });
+    this._websocketConnectionService.send('request.request_new_game', {});
   }
 
   requestStartRound() {
