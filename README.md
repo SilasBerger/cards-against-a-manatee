@@ -44,5 +44,11 @@ other than 1 are ignored.
 3. Run `docker compose up -d` to start the stack
 4. Visit [http://localhost:4200](http://localhost:4200) to play
 
-## Current Project State
-This project is currently under construction. Release v0.1.0 marks the first playable prototype. However, most components will undergo signigicant changes before a version v1.0.0 will get released.
+![Cards Tray](./images/card-tray.png)
+![Cards Played](./images/cards-played.png)
+
+## 🎯 Current Project Status
+This project is still in early development. However, the state on this branch is already playable. Build and usage instructions as well as a Docker deployment are being worked on (see the `topic/cleanup-and-dockerize` branch).
+
+## ⚖️ License
+[Creative Commons BY-NC-SA 2.0](http://creativecommons.org/licenses/by-nc-sa/2.0/)
