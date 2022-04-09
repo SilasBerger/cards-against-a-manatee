@@ -5,11 +5,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CardsOnTheWebPrototypeApplication {
+public class CardsAgainstAManateeApplication {
 
     public static void main(String[] args) {
         eagerLoad();
-        SpringApplication.run(CardsOnTheWebPrototypeApplication.class, args);
+        SpringApplication.run(CardsAgainstAManateeApplication.class, args);
     }
 
     private static void eagerLoad() {

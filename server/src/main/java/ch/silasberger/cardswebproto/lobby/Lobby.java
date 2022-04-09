@@ -11,9 +11,12 @@ import ch.silasberger.cardswebproto.event.events.notification.NotifyPlayerJoined
 import ch.silasberger.cardswebproto.event.events.notification.NotifyPlayerLeftLobbyEvent;
 import ch.silasberger.cardswebproto.event.events.request.RequestNewGameEvent;
 import ch.silasberger.cardswebproto.game.Game;
-import ch.silasberger.cardswebproto.model.*;
-import ch.silasberger.cardswebproto.service.BlackCardService;
-import ch.silasberger.cardswebproto.service.WhiteCardService;
+import ch.silasberger.cardswebproto.model.CardsCollection;
+import ch.silasberger.cardswebproto.model.InitialLobbyState;
+import ch.silasberger.cardswebproto.model.LobbyMemberRepresentation;
+import ch.silasberger.cardswebproto.model.NonceId;
+import ch.silasberger.cardswebproto.service.CardsService;
+import ch.silasberger.cardswebproto.util.ApplicationException;
 import io.reactivex.rxjava3.disposables.Disposable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,29 +29,23 @@ public class Lobby implements EventHandler {
     private final EventBusAdapter eventBusAdapter;
     private final Disposable eventBusSubscription;
     private final Logger logger;
-    private BlackCardService blackCardService;
-    private WhiteCardService whiteCardService;
     private Map<UUID, LobbyMember> members;
     private LobbyMember leader;
-    private List<Integer> whiteCardIds;
-    private List<Integer> blackCardIds;
-    private CardsCollection cardsCollection;
     private Game activeGame;
 
-    public Lobby(NonceId id, BlackCardService blackCardService, WhiteCardService whiteCardService) {
+    private final CardsService cardsService;
+
+    public Lobby(NonceId id, CardsService cardsService) {
         this.id = id;
-        this.blackCardService = blackCardService;
-        this.whiteCardService = whiteCardService;
+        this.cardsService = cardsService;
+
         this.logger = LoggerFactory.getLogger(Lobby.class);
         this.members = new HashMap<>();
         this.leader = null;
-        this.blackCardIds = null;
-        this.whiteCardIds = null;
         this.eventBusAdapter = new EventBusAdapter();
         this.eventBusAdapter.listenOn(EventChannelNameBroker.getChannelFor(this));
         this.eventBusSubscription = this.eventBusAdapter.subscribe(this);
         this.activeGame = null;
-        new Initializer().start();
     }
 
     public NonceId getId() {
@@ -112,14 +109,13 @@ public class Lobby implements EventHandler {
         return member.equals(leader);
     }
 
-    // ========================= EventHandler =======================
     @Override
-    public void onEvent(AbstractEvent event) {
+    public void onEvent(AbstractEvent event) throws ApplicationException {
         event.executeOn(this);
     }
 
     @Override
-    public void handle(RequestNewGameEvent event) {
+    public void handle(RequestNewGameEvent event) throws ApplicationException {
         if (activeGame != null) {
             activeGame.dispose();
         }
@@ -131,31 +127,12 @@ public class Lobby implements EventHandler {
             return;
         }
 
-        activeGame = new Game(event.getGameModeName(),
-                new HashSet<>(members.values()),
+        CardsCollection cardsCollection = cardsService.loadCardSet("default");
+        activeGame = new Game(new HashSet<>(members.values()),
                 eventBusAdapter,
                 cardsCollection,
                 this);
 
         eventBusAdapter.publishOn(localChannel(), new NotifyGameStartedEvent());
-    }
-
-
-    // ======================== Helpers ========================
-    private class Initializer extends Thread {
-        @Override
-        public void run() {
-            blackCardIds = blackCardService.getIds();
-            whiteCardIds = whiteCardService.getIds();
-            Collections.shuffle(blackCardIds);
-            Collections.shuffle(whiteCardIds);
-
-            List<BlackCard> blackCards = blackCardService.getAll();
-            List<WhiteCard> whiteCards = whiteCardService.getAll();
-            Collections.shuffle(blackCards);
-            Collections.shuffle(whiteCards);
-
-            cardsCollection = new CardsCollection(blackCards, whiteCards);
-        }
     }
 }

@@ -2,6 +2,7 @@ package ch.silasberger.cardswebproto.event.events;
 
 import ch.silasberger.cardswebproto.event.EventHandler;
 import ch.silasberger.cardswebproto.event.EventHeaders;
+import ch.silasberger.cardswebproto.util.ApplicationException;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public abstract class AbstractEvent {
@@ -31,5 +32,5 @@ public abstract class AbstractEvent {
         }
     }
 
-    public abstract void executeOn(EventHandler handler);
+    public abstract void executeOn(EventHandler handler) throws ApplicationException;
 }

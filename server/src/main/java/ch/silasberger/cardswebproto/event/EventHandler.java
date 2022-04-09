@@ -13,11 +13,10 @@ import ch.silasberger.cardswebproto.event.events.request.AbstractRequestEvent;
 import ch.silasberger.cardswebproto.event.events.request.RequestExitLobbyEvent;
 import ch.silasberger.cardswebproto.event.events.request.RequestJoinLobbyEvent;
 import ch.silasberger.cardswebproto.event.events.request.RequestNewGameEvent;
+import ch.silasberger.cardswebproto.util.ApplicationException;
 
 public interface EventHandler {
-    void onEvent(AbstractEvent event);
-
-    // Yes, these calls will get dispatched about half a dozen times just to end up in a no-op. I don't care. Go away.
+    void onEvent(AbstractEvent event) throws ApplicationException;
 
     // Default handlers.
     default void handle(AbstractEvent event) {}
@@ -26,7 +25,7 @@ public interface EventHandler {
     default void handle(AbstractRequestEvent event) { handle((AbstractEvent) event); }
     default void handle(RequestJoinLobbyEvent event) { handle((AbstractRequestEvent) event); }
     default void handle(RequestExitLobbyEvent event) { handle((AbstractRequestEvent) event); }
-    default void handle(RequestNewGameEvent event) { handle((AbstractRequestEvent) event); }
+    default void handle(RequestNewGameEvent event) throws ApplicationException { handle((AbstractRequestEvent) event); }
 
     // Notification events.
     default void handle(AbstractNotificationEvent event) { handle((AbstractEvent) event); }

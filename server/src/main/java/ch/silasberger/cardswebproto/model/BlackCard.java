@@ -1,48 +1,26 @@
 package ch.silasberger.cardswebproto.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.Serializable;
+public class BlackCard {
 
-@Entity
-@Table(name = "black_cards")
-public class BlackCard implements Serializable {
+    public BlackCard(int id, String value, int pick) {
+        this.id = id;
+        this.value = value;
+        this.pick = pick;
+    }
 
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @Column
-    private int id;
-
-    @Column
-    private String value;
-
-    @Column
-    private int pick;
+    private final int id;
+    private final String value;
+    private final int pick;
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getValue() {
         return value;
     }
 
-    public void setValue(String value) {
-        this.value = value;
-    }
-
     public int getPick() {
         return pick;
-    }
-
-    public void setPick(int pick) {
-        this.pick = pick;
     }
 }

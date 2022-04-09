@@ -1,37 +1,20 @@
 package ch.silasberger.cardswebproto.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.Serializable;
+public class WhiteCard {
 
-@Entity
-@Table(name = "white_cards")
-public class WhiteCard implements Serializable {
+    public WhiteCard(int id, String value) {
+        this.id = id;
+        this.value = value;
+    }
 
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @Column
-    private int id;
-
-    @Column
-    private String value;
+    private final int id;
+    private final String value;
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getValue() {
         return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
     }
 }
